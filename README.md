@@ -20,3 +20,4 @@ mongo_collection =
 ###############
 to create postgres table use "alembic upgrade head"
 to run application use "uvicorn main:app --reload"
+;
