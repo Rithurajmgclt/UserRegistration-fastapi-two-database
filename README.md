@@ -17,3 +17,6 @@ base_url = "http://127.0.0.1:8000"
 mongo_db =
 mongo_collection =
 """""
+###############
+to create postgres table use "alembic upgrade head"
+to run application use "uvicorn main:app --reload"
