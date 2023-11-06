@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String,ForeignKey
-from users.database import Base
-from sqlalchemy.dialects.postgresql import BYTEA
 from sqlalchemy.orm import relationship
+
+from users.database import Base
 
 class User(Base):
     """
@@ -26,5 +26,4 @@ class Profile(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     image_path = Column(String)
 
-    # Relationship with the User table
     user = relationship("User", back_populates="profile")    
