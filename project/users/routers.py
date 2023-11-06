@@ -19,7 +19,8 @@ from sqlalchemy.orm import Session
 from dotenv import load_dotenv
 from users.database import collection as bucket
 from starlette.responses import FileResponse
-
+PHONE_REGEX = r'^\+\d{1,3}-\d{3,14}$'
+PASSWORD_REGEX = r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$'
 load_dotenv()
 
 user_router = APIRouter()
@@ -77,11 +78,12 @@ def save_uploaded_file(file: UploadFile, file_path: str):
 @user_router.post("/users/create")
 async def create_item(fullname: str = Form(...),
     email: EmailStr = Form(...),
-    phone: constr(regex=r'^\+\d{1,3}-\d{3,14}$') = Form(...),
-    password: str = Form(...), image: UploadFile = File(...),
+    phone: str = Form(...),
+    password: str = Form(...),
+    image: UploadFile = File(...),
     db: Session = Depends(get_db)):
+    
     try:
-        # print(password)
         # Create a new User instance\
           #password validation
         if not re.match(PASSWORD_REGEX, password):
