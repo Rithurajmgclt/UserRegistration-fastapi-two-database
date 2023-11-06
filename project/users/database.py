@@ -6,13 +6,22 @@ from dotenv import load_dotenv
 import os
 from sqlalchemy.orm import Session
 from pymongo import MongoClient
+
+
+
 load_dotenv()
 db=os.getenv("DB_NAME_1")
-DATABASE_URL = f"postgresql://postgres:postgres@localhost/{db}"
+db_user=os.getenv("DB_USER")
+db_pass=os.getenv("DB_PASSWOrD")
+DATABASE_URL = f"postgresql://{db_user}:{db_pass}@localhost/{db}"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = declarative_base()
+Base = declarative_base()\
+
+
+
+
 def initialize_database():
     Base.metadata.create_all(bind=engine)
 
@@ -22,6 +31,8 @@ def get_db() -> Session:
         yield db
     finally:
         db.close()    
+
+
 
 client = MongoClient("mongodb://localhost:27017/")
 mongo_db=os.getenv("mongo_db")

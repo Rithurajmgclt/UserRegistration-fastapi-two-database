@@ -1,0 +1,6 @@
+DB_NAME_1="postgres database name"
+DB_USER="postgres user name "
+DB_PASSWOrD="postgres password"
+base_url = "http://127.0.0.1:8000"
+mongo_db ="mongo database name"
+mongo_collection ="mongo collection name"
