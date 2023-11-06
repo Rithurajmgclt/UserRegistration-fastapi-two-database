@@ -3,7 +3,14 @@ from pydantic import validator, EmailStr, constr
 from fastapi import Form
 from typing import Optional
 import re
+
+
+
 class Usercreate(BaseModel):
+    """
+    this classs is for user create
+
+    """
     fullname: str
     phone: str
     email:EmailStr
@@ -16,6 +23,9 @@ class Usercreate(BaseModel):
         return value
 
 class UserDetail(BaseModel):
+    """
+    this class is for getting user details
+    """
     id: int
     fullname: str
     email: str

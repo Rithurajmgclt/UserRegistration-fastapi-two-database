@@ -4,6 +4,9 @@ from sqlalchemy.dialects.postgresql import BYTEA
 from sqlalchemy.orm import relationship
 
 class User(Base):
+    """
+    Table to save user details
+    """
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -14,6 +17,9 @@ class User(Base):
     profile = relationship("Profile", uselist=False, back_populates="user")
 
 class Profile(Base):
+    """
+    table to save pofile details
+    """
     __tablename__ = "profiles"
 
     id = Column(Integer, primary_key=True, index=True)

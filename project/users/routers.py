@@ -32,6 +32,10 @@ PASSWORD_REGEX = r"^(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]{8,}$"
 
 @user_router.get("/users/{user_id}", response_model=UserDetail)
 async def get_user(user_id: int, request: Request, db: Session = Depends(get_db)):
+    """
+    this is a simple function run asinchronously to get the user details 
+    attributes: input user id
+    """
     user = db.query(User).get(user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -47,6 +51,10 @@ async def get_user(user_id: int, request: Request, db: Session = Depends(get_db)
     return user_detail
 @user_router.get("/users/list/", response_model=list[UserDetail])
 async def get_user(db: Session = Depends(get_db)):
+    """
+    this is a simple function run asinchronously to get the user list 
+    
+    """
     users = db.query(User).all()
     if not users:
         raise HTTPException(status_code=404, detail="No users created")
@@ -67,6 +75,9 @@ async def get_user(db: Session = Depends(get_db)):
 
 
 def save_uploaded_file(file: UploadFile, file_path: str):
+    """
+    function to save the uloaded image
+    """
     with open(file_path, "wb") as buffer:
         while True:
             chunk = file.file.read(1024)
