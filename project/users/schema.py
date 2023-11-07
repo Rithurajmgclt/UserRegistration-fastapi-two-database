@@ -1,6 +1,5 @@
 from pydantic import BaseModel
-from pydantic import validator, EmailStr, constr
-from fastapi import Form
+from pydantic import validator, EmailStr
 from typing import Optional
 import re
 
